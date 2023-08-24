@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const url = "http://localhost:9000"
+const url = "https://inventorybillingapp.onrender.com"
 
 
 export const login = async (payload) => {

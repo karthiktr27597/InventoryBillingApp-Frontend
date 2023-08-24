@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:9000/invoice"
+const url = "https://inventorybillingapp.onrender.com/invoice"
 
 const token = localStorage.getItem("token")
 
