@@ -15,7 +15,7 @@ function AddProduct() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleInputChange = (e) => {
-       // console.log(e.target)
+        // console.log(e.target)
         const { name, value } = e.target;
         setProduct((prevProduct) => ({
             ...prevProduct,
@@ -26,7 +26,10 @@ function AddProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await addProduct(product)
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
+
+            const response = await addProduct(product, config)
             console.log('Product added:', response.data);
             // Clear the form or show a success message
 

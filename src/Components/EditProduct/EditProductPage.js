@@ -17,7 +17,11 @@ function EditProductPage() {
 
     const fetchProduct = async (id) => {
         try {
-            const response = await findOneProduct(id)
+            const token = await localStorage.getItem("token")
+
+            const config = { headers: { "x-auth-token": token } }
+
+            const response = await findOneProduct(id, config)
             setEditedProduct(...response.data);
             // console.log(response.data)
         } catch (error) {
@@ -42,7 +46,11 @@ function EditProductPage() {
     const handleSaveEdit = async (e) => {
         try {
             e.preventDefault()
-            const response = await editOneProduct(editedProduct, id);
+            
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
+
+            const response = await editOneProduct(editedProduct, id, config);
             console.log('Product updated:', response.data);
 
             // Redirect back to product list with a success message

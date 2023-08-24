@@ -32,7 +32,10 @@ function Dashboard() {
 
     const getSalesPermonthData = async () => {
         try {
-            const response = await salesPermonth();
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
+
+            const response = await salesPermonth(config);
             setDailySalesData(response.data)
         } catch (error) {
             console.error('Error fetching filtered daily sales data:', error);
@@ -49,8 +52,11 @@ function Dashboard() {
 
     const fetchFilteredData = async () => {
         try {
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
+
             if (selectedMonth && selectedYear) {
-                const response = await selectedSalesPermonth(selectedYear, selectedMonth)
+                const response = await selectedSalesPermonth(selectedYear, selectedMonth, config)
                 console.log(response.data)
                 setDailySalesData(response.data);
                 setCurrentMY(months[selectedMonth - 1] + " " + selectedYear)

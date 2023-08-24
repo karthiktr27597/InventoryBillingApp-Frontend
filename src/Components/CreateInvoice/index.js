@@ -19,8 +19,12 @@ function CreateInvoice() {
 
     const fetchProducts = async () => {
         try {
-            const response = await getAllProduct() // Adjust the API endpoint
+            const token = await localStorage.getItem("token")
+
+            const config = { headers: { "x-auth-token": token } }
+            const response = await getAllProduct(config)
             setProducts(response.data);
+
         } catch (error) {
             console.error('Error fetching products:', error);
             if (error.response.data.message = "Invalid Authorization") {
@@ -48,16 +52,21 @@ function CreateInvoice() {
 
     const createInvoice = async () => {
         try {
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
             const invoiceProducts = Object.values(selectedProducts);
+            
+            if(!invoiceProducts){
             const response = await createOneInvoice({
                 products: invoiceProducts,
                 totalAmount: totalAmount
-            }); // Adjust the API endpoint
+            }, config);
             console.log('Invoice created:', response.data);
             // Reset the state and show success message
             alert("Invoice generated Successfully")
             setSelectedProducts([]);
             setTotalAmount(0);
+            }
         } catch (error) {
             console.error('Error creating invoice:', error);
             if (error.response.data.error.includes("Insufficient quantity for product")) {

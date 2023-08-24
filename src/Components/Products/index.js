@@ -17,7 +17,10 @@ function Products() {
 
     const fetchProducts = async () => {
         try {
-            const response = await getAllProduct() // Adjust the API endpoint
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
+            const response = await getAllProduct(config) // Adjust the API endpoint
+
             setProducts(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -29,7 +32,10 @@ function Products() {
 
     const deleteProduct = async (productId) => {
         try {
-            await deleteOneProduct(productId);
+            const token = await localStorage.getItem("token")
+            const config = { headers: { "x-auth-token": token } }
+
+            await deleteOneProduct(productId, config);
             fetchProducts(); // Refresh the list after deletion
         } catch (error) {
             console.error('Error deleting product:', error);
