@@ -15,7 +15,7 @@ function AddProduct() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleInputChange = (e) => {
-        console.log(e.target)
+       // console.log(e.target)
         const { name, value } = e.target;
         setProduct((prevProduct) => ({
             ...prevProduct,

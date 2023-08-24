@@ -60,6 +60,12 @@ function CreateInvoice() {
             setTotalAmount(0);
         } catch (error) {
             console.error('Error creating invoice:', error);
+            if (error.response.data.error.includes("Insufficient quantity for product")) {
+                alert(error.response.data.error)
+            }
+            if (error.response.data.error.includes("Product with ID")) {
+                alert(error.response.data.error)
+            }
         }
     };
 
@@ -112,16 +118,20 @@ function CreateInvoice() {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
-                        <div className="product-list d-flex gap-5">
-                            {filteredProducts.map(product => (
-                                <div key={product._id} className="product">
-                                    <h4>{product.name} <i className="bi bi-plus-circle-dotted" style={{ cursor: "pointer" }} onClick={() => handleAddQuantity(product)}></i></h4>
-                                    <p>Price: ${product.price.toFixed(2)}</p>
-                                    <button className="btn btn-primary" onClick={() => addProductToInvoice(product)}>
-                                        Add to Invoice
-                                    </button>
-                                </div>
-                            ))}
+                        <div className="container">
+                            <div className="row">
+                                {filteredProducts.map((product, index) => (
+                                    <div key={product._id} className="col-md-6">
+                                        <div className="product mb-3">
+                                            <h4>{product.name} <i className="bi bi-plus-circle-dotted" style={{ cursor: "pointer" }} onClick={() => handleAddQuantity(product)}></i></h4>
+                                            <p>Price: ${product.price.toFixed(2)}</p>
+                                            <button className="btn btn-primary" onClick={() => addProductToInvoice(product)}>
+                                                Add to Invoice
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6">

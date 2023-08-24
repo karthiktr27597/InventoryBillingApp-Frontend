@@ -20,7 +20,6 @@ export const deleteOneProduct = async (productId) => {
 }
 
 export const editOneProduct = async (editedProduct, productId) => {
-    console.log('check')
     return await axios.put(`${url}/editone/${productId}`, editedProduct, config)
 }
 
