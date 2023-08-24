@@ -1,0 +1,9 @@
+.footer {
+    margin-top: auto;
+}
+
+.LoginPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

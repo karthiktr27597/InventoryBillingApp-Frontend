@@ -1,0 +1,39 @@
+/* Navbar styling */
+.navbar {
+    margin-bottom: 30px;
+}
+
+/* Jumbotron styling */
+.jumbotron {
+    /* background-color: #f8f9fa; */
+    padding: 100px 0;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Feature column styling */
+.col-md-4 {
+    margin-bottom: 30px;
+}
+
+/* Footer styling */
+footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+
+/* Main content wrapper */
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

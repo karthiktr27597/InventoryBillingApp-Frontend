@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import AddProduct from './Components/AddProduct';
+import LandingPage from './Components/LandingPage';
+import Dashboard from './Components/Dashboard';
+import Products from './Components/Products';
+import CreateInvoice from './Components/CreateInvoice';
+import EditProductPage from './Components/EditProduct/EditProductPage';
+import LoginPage from './Components/LoginPage';
+
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/landingpage" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/createinvoice" element={<CreateInvoice />} />
+        <Route path="/edit-product/:id" element={<EditProductPage />} />
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
     </div>
   );
 }
